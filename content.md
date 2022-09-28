@@ -29,7 +29,7 @@ Union.
 
 > Ferramenta que nos permite visualizar os tipos e queries disponíveis em uma API, o que facilita muito a vida de quem vai trabalhar com ela.
 
-```javascript
+```gql
 {
     __schema {
         types {
@@ -49,7 +49,7 @@ se tratar de uma API pública, a todos os tipos que estão disponíveis.
 
 Verificando qual é o ponto de entrada da API:
 
-```javascript
+```gql
 {
     __schema {
         queryType {
@@ -65,7 +65,7 @@ Vale notar aqui que *poderia ser adotado qualquer nome para o tipo, mas utilizar
 
 Podemos passar mais subcampos para ter mais informações ainda sobre os tipos disponíveis nessa API:
 
-```javascript
+```gql
 query {
     __schema {
         types {
@@ -85,7 +85,7 @@ Essa query vai nos retornar informações mais completas sobre cada tipo: nome, 
 
 Um último teste: Como saber de que se trata certo tipo, por exemplo “Actor”, que aparece na lista de tipos disponíveis na API:
 
-```javascript
+```gql
 {
     __type(name: "Actor") {
         name
@@ -120,7 +120,7 @@ Quando trabalhamos com GraphQL, o ideal é pensarmos no uso dos dados, mais do q
 
 Um exemplo de tipo Objeto (Object type) em GraphQL:
 
-```javascript
+```gql
     type Livro {
         id: ID!
         titulo: String!
@@ -150,7 +150,7 @@ os dados podem vir de diversas fontes: **endpoints REST, bancos SQL e NoSQL, out
 
 Um exemplo de tipo Query:
 
-```javascript
+```gql
     type Query {
         livros: [Livro!]!
         livro(id: ID!): Livro!
@@ -172,7 +172,7 @@ porém Mutations são opcionais.
 
 Um exemplo de tipo Mutation para adicionar um novo livro:
 
-```javascript
+```gql
     type Mutation {
         adicionaLivro(titulo: String!, autoria: String!, paginas: Int!, colecoes: Colecao!): Livro!
     }
