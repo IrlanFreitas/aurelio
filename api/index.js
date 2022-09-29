@@ -3,6 +3,7 @@ const { mergeTypeDefs } = require('graphql-tools')
 
 const userResolvers = require('./user/resolvers/userResolvers')
 const userSchema = require('./user/schema/user.graphql')
+const UserAPI = require('./user/datasource/user')
 
 // const produtoResolvers = require('./produtos/resolvers/produtoResolvers')
 const produtoSchema = require('./produto/schema/produto.graphql')
@@ -15,6 +16,11 @@ const resolvers = [userResolvers]
 
 const server = new ApolloServer({
     typeDefs, resolvers,
+    dataSources: () => {
+        return {
+            userAPI: new UserAPI()
+        }
+    },
     introspection: true,
     playground: true,
 })
