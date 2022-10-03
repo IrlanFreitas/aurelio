@@ -23,6 +23,37 @@ class UsersAPI extends RESTDataSource {
         return user
     }
 
+    async adicionarUser(user) {
+
+        const users = await this.getUsers()
+        const role = await this.get(`/roles?type=${user.role}`)
+
+        user.id = users.length + 1
+
+        await this.post("users", { ...user, role: role[0].id })
+
+        return ({
+            ...user,
+            role: role[0]
+        })
+    }
+
+    async atualizarUser(novoDados) {
+
+        const role = await this.get(`/roles?type=${novoDados.role}`)
+
+        await this.put(`users/${novosDados.id}`, { ...novoDados, role: role[0].id })
+
+        return ({
+            ...user,
+            role: role[0]
+        })
+    }
+
+    async deletarUser(id) {
+        await this.delete(`users/${id}`)
+        return ({ id })
+    }
 }
 
 module.exports = UsersAPI

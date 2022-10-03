@@ -12,6 +12,10 @@ Graph QL
     - [Object Type](#object-type)
     - [Query Type](#query-type)
     - [Mutation Type](#mutation-type)
+    - [Enum Type](#enum-type)
+    - [Input Type](#input-type)
+    - [Interface Type](#interface-type)
+    - [Union Type](#union-type)
   - [Dados](#dados)
   - [DataSource](#datasource)
   - [TypeDefs](#typedefs)
@@ -288,6 +292,14 @@ type Mutation {
   ): Livro!
 }
 ```
+
+### Enum Type
+
+### Input Type
+
+### Interface Type
+
+### Union Type
 
 <br><br>
 
