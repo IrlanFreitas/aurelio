@@ -10,7 +10,8 @@ O GraphQL fornece uma abordagem para o desenvolvimento de APIs da Web e foi comp
 
 O GraphQL consiste em um sistema de tipos, linguagem de consulta e semântica de execução, validação estática e introspecção de tipos . Ele suporta leitura, gravação (mutação) e assinatura de alterações nos dados (atualizações em tempo real – mais comumente implementadas usando WebSockets ).Os servidores GraphQL estão disponíveis para vários idiomas, incluindo Haskell, JavaScript, Perl, Python, Ruby, Java, C++, C#, Scala, Go, Rust, Elixir, Erlang, PHP, R, D e Clojure. O resultado de uma única consulta é retornado no formato JSON.
 
-## Referencias
+## Referências
 
 - [Introduction to GraphQL](https://graphql.org/learn/)
 - [How to GraphQL](https://www.howtographql.com/basics/0-introduction/)
+- [Best Practices Resources and Design Patterns](https://www.moesif.com/blog/api-guide/graphql-best-practices-resources-and-design-patterns/)
