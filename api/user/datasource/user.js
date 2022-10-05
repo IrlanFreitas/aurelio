@@ -42,23 +42,50 @@ class UsersAPI extends RESTDataSource {
         })
     }
 
+    async formatUser(novosDados) {
+
+        if (novosDados.user.role) {
+            const role = await this.get(`/roles?type=${novosDados.user.role}`)
+            novosDados.user.role = role[0].id
+        }
+
+        return { id: novosDados.id, ...novosDados.user }
+    }
+
     async atualizarUser(novosDados) {
 
-        const role = await this.get(`/roles?type=${novosDados.user.role}`)
+        try {
 
-        await this.put(`users/${novosDados.id}`, { id: novosDados.id, ...novosDados.user, role: role[0].id })
+            await this.put(`users/${novosDados.id}`, this.formatUser(novosDados))
+        } catch (error) {
+
+            this.respostaCustom.httpStatusCode = 400
+            this.respostaCustom.mensagem = "Ocorreu um erro ao atualizar o usuário"
+
+            return {
+                ...this.respostaCustom,
+                user: {}
+            }
+        }
 
         return ({
             ...this.respostaCustom,
             user: {
                 ...novosDados.user,
-                role: role[0]
             }
         })
     }
 
     async deletarUser(id) {
-        await this.delete(`users/${id}`)
+        try {
+            await this.delete(`users/${id}`)
+
+        } catch (error) {
+            this.respostaCustom.httpStatusCode = 400
+            this.respostaCustom.mensagem = "Ocorreu um erro ao deletar um usuário"
+            return this.respostaCustom
+
+        }
         return this.respostaCustom
     }
 }

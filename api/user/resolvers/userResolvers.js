@@ -11,7 +11,7 @@ const userResolvers = {
     RolesType: {
         ESTUDANTE: "ESTUDANTE",
         DOCENTE: "DOCENTE",
-        COORDENACAO: "COORDENACAO"
+        COORDENACAO: "COORDENAÇÃO"
     },
     DateTime: new GraphQLScalarType({
         name: "DateTime",
