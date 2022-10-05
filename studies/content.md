@@ -9,6 +9,7 @@ Graph QL
       - [Lists](#lists)
   - [Schema Definition Language](#schema-definition-language)
     - [Schalar Types](#schalar-types)
+    - [Custom Schalars](#custom-schalars)
     - [Object Type](#object-type)
     - [Query Type](#query-type)
     - [Mutation Type](#mutation-type)
@@ -227,6 +228,10 @@ São tipos que refletem alguns dos tipos de dados que já conhecemos. Para o Gra
 
 <br>
 
+### Custom Schalars
+
+<br>
+
 ### Object Type
 
 Quando trabalhamos com GraphQL, o ideal é pensarmos no uso dos dados, mais do que na forma em que estão armazenados. Pensando nisso, nem sempre queremos retornar um dado concreto, mas sim um conjunto de dados com propriedades específicas — ou seja, um objeto.
@@ -297,6 +302,8 @@ type Mutation {
 ```
 
 ### Enum Type
+
+
 
 ### Input Type
 

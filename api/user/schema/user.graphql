@@ -1,17 +1,35 @@
 const { gql } = require('apollo-server')
 
 const userSchema = gql`
+
+    scalar DateTime
+
     type User {
         id: ID!
         nome: String!
         ativo: Boolean!
         email: String
         role: Role!
+        createdAt: DateTime
+    }
+
+    input UserInput {
+        nome: String
+        ativo: Boolean
+        email: String
+        role: RolesType
+        createdAt: DateTime
     }
 
     type Role {
         id: ID!
-        type: String!
+        type: RolesType!
+    }
+
+    enum RolesType {
+        ESTUDANTE
+        DOCENTE
+        COORDENACAO
     }
 
     type Query {
@@ -20,16 +38,49 @@ const userSchema = gql`
     }
 
     type Mutation {
-        adicionarUser(nome: String!, 
-        ativo: Boolean!, 
-        email: String, 
-        role: String!): User!
-        atualizarUser(id: ID!, 
-        nome: String!, 
-        ativo: Boolean!, 
-        email: String, 
-        role: String!): User!
-        deletarUser(id: ID!): ID!
+        # * Utilização de input para melhoria da padronização
+        # adicionarUser(nome: String!, 
+        # ativo: Boolean!, 
+        # email: String, 
+        # role: RolesType!,
+        # createdAt: DateTime): User!
+
+        # * Utilização de input para melhoria da padronização
+        # atualizarUser(id: ID!, 
+        # nome: String!, 
+        # ativo: Boolean!, 
+        # email: String, 
+        # role: RolesType!): User!
+
+        # * Atualização de retorno para o padrão mais aceito
+        # atualizarUser(id: ID!, user: UserInput): User!
+        
+        # * Atualização de retorno para o padrão mais aceito
+        # deletarUser(id: ID!): ID!
+
+        adicionarUser(user: UserInput): User!
+
+        atualizarUser(id: ID!, user: UserInput): atualizaUserResposta!
+
+        deletarUser(id: ID!): deletaUserResposta!
+
+    }
+
+    interface respostaCustom {
+        # Tipo Abstrato
+        httpStatusCode: Int!
+        mensagem: String!
+    }
+
+    type deletaUserResposta implements respostaCustom {
+        httpStatusCode: Int!
+        mensagem: String!
+    }
+
+    type atualizaUserResposta implements respostaCustom {
+        httpStatusCode: Int!
+        mensagem: String!
+        user: User!
     }
 `
 
